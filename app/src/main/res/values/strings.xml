@@ -10,4 +10,10 @@
     <string name="btn_test_register">Đăng ký</string>
     <string name="btn_test_login">Đăng nhập</string>
     <string name="learn_button">Học sử dụng Button</string>
+    <string name="save">Lưu</string>
+    <string name="desc_change_avatar">Thay đổi ảnh đại diện</string>
+    <string name="upload_avatar">Upload avatar</string>
+    <string name="day_prompt">Ngày</string>
+    <string name="month_prompt">Tháng</string>
+    <string name="year_prompt">Năm</string>
 </resources>
