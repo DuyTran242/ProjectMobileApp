@@ -8,6 +8,22 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Build;
+import android.util.Log;
+import android.widget.RemoteViews;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+
+import com.example.lab2.R;
+import com.example.lab2.activity.MainActivity;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 

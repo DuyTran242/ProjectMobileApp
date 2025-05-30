@@ -136,20 +136,22 @@ public class MainActivity extends AppCompatActivity  {
                         laptop.putExtra("loai", 2);
                         startActivity(laptop);
                         break;
+
                     case 5:
                         Intent history = new Intent(getApplicationContext(), XemDonActivity.class);
                         startActivity(history);
                         break;
-                    case 6:
-                        Intent quanli = new Intent(getApplicationContext(), QuanLiActivity.class);
-                        startActivity(quanli);
+                    case 6: // Hồ Sơ của tôi
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        break;
+                    case 7: // Quản lí
+                        startActivity(new Intent(getApplicationContext(), QuanLiActivity.class));
                         finish();
                         break;
-                    case 7:
+                    case 8: // Đăng xuất
                         Paper.book().delete("user");
                         FirebaseAuth.getInstance().signOut();
-                        Intent dangnhap = new Intent(getApplicationContext(), DangNhapActivity.class);
-                        startActivity(dangnhap);
+                        startActivity(new Intent(getApplicationContext(), DangNhapActivity.class));
                         finish();
                         break;
                 }
