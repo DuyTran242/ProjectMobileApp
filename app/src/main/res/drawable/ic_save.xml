@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 1. Disabled state -->
+    <item
+        android:state_enabled="false"
+        android:drawable="@drawable/ic_save_disabled" />
+
+    <!-- 2. Pressed state -->
+    <item
+        android:state_pressed="true"
+        android:drawable="@drawable/ic_save_pressed" />
+
+    <!-- 3. Default (normal) state -->
+    <item
+        android:drawable="@drawable/ic_save_default" />
+
+</selector>

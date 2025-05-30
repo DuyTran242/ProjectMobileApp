@@ -4,13 +4,21 @@ import com.example.lab2.model.DonHangModel;
 import com.example.lab2.model.LoaiSpModel;
 import com.example.lab2.model.MessageModel;
 import com.example.lab2.model.SanPhamMoiModel;
+import com.example.lab2.model.UpdateUserResponse;
+import com.example.lab2.model.User;
 import com.example.lab2.model.UserModel;
 
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
+import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 public interface ApiBanHang {
     @GET("getloaisp.php")
@@ -99,5 +107,18 @@ public interface ApiBanHang {
 
     );
 
+
+    @GET("get_user.php")
+    Single<User> getUserById(@Query("id") int id);
+    @Multipart
+    @POST("update_user.php")
+    Single<UpdateUserResponse> updateUser(
+            @Part("id") RequestBody id,
+            @Part("name")      RequestBody name,
+            @Part("mobile")    RequestBody mobile,
+            @Part("gender")    RequestBody gender,
+            @Part("birthdate") RequestBody birthdate,
+            @Part("avatar_url")RequestBody avatarUrl
+    );
 
 }
