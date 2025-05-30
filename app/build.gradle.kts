@@ -68,6 +68,6 @@ dependencies {
     implementation("io.github.pilgr:paperdb:2.7.1")
 
     implementation("com.airbnb.android:lottie:4.2.2")
-
+    implementation ("com.cloudinary:cloudinary-android:2.1.0")
 
 }
