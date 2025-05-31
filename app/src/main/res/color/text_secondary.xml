@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Trạng thái disabled (khi View không hoạt động) -->
+    <item android:color="#BDBDBD" android:state_enabled="false" />
+
+    <!-- Trạng thái pressed (khi người dùng bấm giữ) -->
+    <item android:color="#616161" android:state_pressed="true" />
+
+    <!-- Trạng thái focused (khi View đang có focus, ví dụ EditText được chọn) -->
+    <item android:color="#424242" android:state_focused="true" />
+
+    <!-- Default state (mặc định, không rơi vào các trạng thái trên) -->
+    <item android:color="#757575" />
+</selector>

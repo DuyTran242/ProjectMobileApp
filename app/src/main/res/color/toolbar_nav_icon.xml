@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Nếu muốn màu mặc định cho icon nav (không thay đổi theo state) -->
+    <item android:color="#2460af"/>  <!-- Màu cam/đỏ cho biểu tượng back -->
+</selector>

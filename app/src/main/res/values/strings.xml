@@ -17,4 +17,20 @@
     <string name="day_prompt">Ngày</string>
     <string name="month_prompt">Tháng</string>
     <string name="year_prompt">Năm</string>
+    <string name="settings">Cài đặt</string>
+    <string name="privacy">Bảo vệ quyền riêng tư</string>
+    <string name="policy">Chính sách</string>
+    <string name="help">Trợ giúp</string>
+    <string name="feedback">Phản hồi</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="app_version">6.79.0 (1385)</string>
+    <string name="account_info">Thông Tin Tài Khoản\n</string>
+    <string name="number_of_addresses">Số Địa Chỉ</string>
+    <string name="messages">Tin nhắn</string>
+    <string name="messages_subtitle">Gửi các thông báo, khuyến mãi đặc biệt</string>
+    <string name="country">Quốc gia</string>
+    <string name="language">Ngôn ngữ - Language</string>
+    <string name="language_value">Tiếng Việt</string>
+    <string name="settings_title">Cài đặt</string>
+
 </resources>

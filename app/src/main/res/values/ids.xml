@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="toolbar_otp" type="id" />
+    <item name="tv_email" type="id" />
+    <item name="et_otp_code" type="id" />
+    <item name="tv_countdown" type="id" />
+    <item name="btn_verify_otp" type="id" />
+    <item name="btn_resend_otp" type="id" />
+</resources>

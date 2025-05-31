@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Khi Toolbar (hoặc View chứa title) bị disabled (hiếm khi xảy ra) -->
+    <item
+        android:state_enabled="false"
+        android:color="#BDBDBD" />        <!-- Màu xám nhạt cho trạng thái disabled -->
+
+    <!-- Khi Toolbar (hoặc View chứa title) đang được nhấn (pressed) -->
+    <item
+        android:state_pressed="true"
+        android:color="#FF5722" />        <!-- Ví dụ: màu cam/đỏ khi pressed (tuỳ chọn) -->
+
+    <!-- Mặc định (default) – khi không rơi vào bất kỳ trạng thái nào ở trên -->
+    <item
+        android:color="#212121" />         <!-- Màu đen đậm cho văn bản ở trạng thái bình thường -->
+</selector>

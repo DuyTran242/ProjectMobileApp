@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Khi View bị disabled -->
+    <item android:color="#B0BEC5" android:state_enabled="false" />
+
+    <!-- Khi View đang ở trạng thái pressed (nhấn giữ) -->
+    <item android:color="#303F9F" android:state_pressed="true" />
+
+    <!-- Khi View đang có focus (ví dụ EditText được chọn) -->
+    <item android:color="#3949AB" android:state_focused="true" />
+
+    <!-- Mặc định: màu primary ban đầu -->
+    <item android:color="#3F51B5" />
+</selector>
