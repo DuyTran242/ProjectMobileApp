@@ -18,10 +18,28 @@
         android:theme="@style/Theme.FirstAndroidApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".activity.OtpVerificationActivity"
+            android:parentActivityName=".activity.VerifyPasswordActivity"
+            android:exported="false" />
     <!--        Khai báo parent activity để hệ thống hiểu luồng navigation:-->
         <activity
             android:name=".activity.ProfileActivity"
             android:parentActivityName=".activity.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AccountSecurityActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.VerifyPasswordActivity"
+            android:parentActivityName=".activity.AccountSecurityActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.ChangePasswordActivity"
+            android:parentActivityName=".activity.VerifyPasswordActivity"
             android:exported="false" />
     <activity
             android:name=".activity.ThemSPActivity"

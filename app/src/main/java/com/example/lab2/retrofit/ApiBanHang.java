@@ -121,4 +121,11 @@ public interface ApiBanHang {
             @Part("avatar_url")RequestBody avatarUrl
     );
 
+    @POST("update_password.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updatePassword(
+            @Field("id") int id,
+            @Field("new_password") String newPassword
+    );
+
 }
