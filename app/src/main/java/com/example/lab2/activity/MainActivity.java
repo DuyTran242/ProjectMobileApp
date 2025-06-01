@@ -34,10 +34,12 @@
     import com.example.lab2.model.User;
     import com.example.lab2.retrofit.ApiBanHang;
     import com.example.lab2.retrofit.RetrofitClient;
+    import com.example.lab2.utils.EmailConfig;
     import com.example.lab2.utils.Utils;
     import com.google.android.gms.tasks.OnSuccessListener;
     import com.google.android.material.bottomnavigation.BottomNavigationView;
     import com.google.android.material.navigation.NavigationView;
+    import com.google.firebase.BuildConfig;
     import com.google.firebase.auth.FirebaseAuth;
     import com.google.firebase.messaging.FirebaseMessaging;
     import com.nex3z.notificationbadge.NotificationBadge;
@@ -74,6 +76,23 @@
             super.onCreate(savedInstanceState);
             EdgeToEdge.enable(this);
             setContentView(R.layout.activity_main);
+
+
+            Log.d("MainActivity", "Initializing EmailConfig...");
+            EmailConfig.init(this);
+
+            if (BuildConfig.DEBUG) {
+                EmailConfig.logConfiguration();
+
+                if (!EmailConfig.isConfigurationValid()) {
+                    Log.e("MainActivity", "❌ Email configuration is INVALID!");
+                    Toast.makeText(this, "⚠️ Email configuration incomplete!", Toast.LENGTH_LONG).show();
+                } else {
+                    Log.d("MainActivity", "✅ Email configuration is VALID!");
+                    Toast.makeText(this, "✅ Email ready!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
             apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
             Paper.init(this);
             if(Paper.book().read("user") != null) {

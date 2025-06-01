@@ -2,6 +2,8 @@ package com.example.lab2.Service;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import com.example.lab2.utils.EmailConfig;
+
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -16,18 +18,22 @@ public class EmailService {
 
     private static final String TAG = "EmailService";
 
-    // Cấu hình Gmail SMTP
-    private static final String EMAIL_HOST = "smtp.gmail.com";
-    private static final String EMAIL_PORT = "587";
-    private static final String EMAIL_USERNAME = "hoangkhanggauss@gmail.com"; // Email của app
-    private static final String EMAIL_PASSWORD = "aopu gbwq koqa watc"; // App password của Gmail
-
     public interface EmailCallback {
         void onSuccess();
         void onError(String error);
     }
 
     public static void sendOTPEmail(String recipientEmail, String otpCode, EmailCallback callback) {
+        // ✅ Kiểm tra configuration trước khi gửi
+        if (!EmailConfig.isConfigurationValid()) {
+            Log.e(TAG, "Email configuration is invalid");
+            EmailConfig.logConfiguration();
+            if (callback != null) {
+                callback.onError("Email configuration not properly set up");
+            }
+            return;
+        }
+
         new SendEmailTask(recipientEmail, otpCode, callback).execute();
     }
 
@@ -45,24 +51,32 @@ public class EmailService {
         @Override
         protected String doInBackground(Void... voids) {
             try {
-                // Cấu hình properties cho SMTP
-                Properties props = new Properties();
-                props.put("mail.smtp.host", EMAIL_HOST);
-                props.put("mail.smtp.port", EMAIL_PORT);
-                props.put("mail.smtp.auth", "true");
-                props.put("mail.smtp.starttls.enable", "true");
+                // ✅ SỬ DỤNG EmailConfig thay vì hardcode
+                Properties props = EmailConfig.getEmailProperties();
+
+                Log.d(TAG, "Sending email with configuration:");
+                Log.d(TAG, "Host: " + props.getProperty("mail.smtp.host"));
+                Log.d(TAG, "Port: " + props.getProperty("mail.smtp.port"));
+                Log.d(TAG, "From: " + EmailConfig.getSmtpUser());
+                Log.d(TAG, "To: " + recipientEmail);
 
                 // Tạo session với authentication
                 Session session = Session.getInstance(props, new Authenticator() {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(EMAIL_USERNAME, EMAIL_PASSWORD);
+                        return new PasswordAuthentication(
+                                EmailConfig.getSmtpUser(),
+                                EmailConfig.getSmtpPassword()
+                        );
                     }
                 });
 
+                // Enable debug mode để troubleshoot
+                session.setDebug(true);
+
                 // Tạo message
                 Message message = new MimeMessage(session);
-                message.setFrom(new InternetAddress(EMAIL_USERNAME));
+                message.setFrom(new InternetAddress(EmailConfig.getSmtpUser()));
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
                 message.setSubject("Mã OTP - Đổi mật khẩu");
 
@@ -78,6 +92,9 @@ public class EmailService {
 
             } catch (MessagingException e) {
                 Log.e(TAG, "Failed to send OTP email", e);
+                return "ERROR: " + e.getMessage();
+            } catch (Exception e) {
+                Log.e(TAG, "Unexpected error while sending email", e);
                 return "ERROR: " + e.getMessage();
             }
         }
