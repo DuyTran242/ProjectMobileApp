@@ -17,6 +17,26 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    packaging {
+        resources {
+            excludes += setOf(  // Sử dụng setOf thay vì mảng
+                "META-INF/NOTICE.md",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt",
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/DEPENDENCIES",
+                "META-INF/DEPENDENCIES.txt",
+                "META-INF/ASL2.0",
+                "META-INF/LGPL2.1",
+                "META-INF/INDEX.LIST",
+                "META-INF/io.netty.versions.properties"
+
+            )
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -34,6 +54,8 @@ android {
         viewBinding = true
         dataBinding = true
     }
+
+
 }
 
 dependencies {
@@ -69,5 +91,7 @@ dependencies {
 
     implementation("com.airbnb.android:lottie:4.2.2")
     implementation ("com.cloudinary:cloudinary-android:2.1.0")
-
+    // Java Mail API
+    implementation("com.sun.mail:android-mail:1.6.7")
+    implementation("com.sun.mail:android-activation:1.6.7")
 }
