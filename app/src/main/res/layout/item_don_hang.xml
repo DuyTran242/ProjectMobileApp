@@ -14,15 +14,34 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/iddonhang"
-            android:text="Đơn hàng: 123"
-            android:textColor="@android:color/holo_red_light"
-            android:textStyle="bold"
-            android:layout_marginLeft="5dp"
-            android:padding="5dp"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/iddonhang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:padding="5dp"
+                android:text="Đơn hàng: 123"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tinhtrang"
+                android:layout_marginLeft="30dp"
+                android:text="Don hang dang"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleview_chitiet"
             android:layout_marginLeft="10dp"

@@ -61,7 +61,7 @@ public class EmailService {
                 Log.d(TAG, "To: " + recipientEmail);
 
                 // Tạo session với authentication
-                Session session = Session.getInstance(props, new Authenticator() {
+                javax.mail.Session session = Session.getInstance(props, new Authenticator() {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(

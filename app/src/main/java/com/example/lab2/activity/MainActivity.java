@@ -164,14 +164,11 @@
                             Intent history = new Intent(getApplicationContext(), XemDonActivity.class);
                             startActivity(history);
                             break;
-                        case 6: // Hồ Sơ của tôi
-                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                            break;
-                        case 7: // Quản lí
+                        case 6: // Quản lí
                             startActivity(new Intent(getApplicationContext(), QuanLiActivity.class));
                             finish();
                             break;
-                        case 8: // Đăng xuất
+                        case 7: // Đăng xuất
                             Paper.book().delete("user");
                             FirebaseAuth.getInstance().signOut();
                             startActivity(new Intent(getApplicationContext(), DangNhapActivity.class));

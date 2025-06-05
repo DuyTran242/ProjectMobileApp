@@ -8,7 +8,16 @@ public class DonHang {
     String diachi;
     String sodienthoai;
     String tongtien;
+    int status;
     List<Item> item;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public int getId() {
         return id;

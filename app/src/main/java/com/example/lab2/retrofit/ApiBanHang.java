@@ -128,4 +128,11 @@ public interface ApiBanHang {
             @Field("new_password") String newPassword
     );
 
+    @POST("updateorder.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updateOrder(
+            @Field("id") int id,
+            @Field("status") int status
+    );
+
 }
