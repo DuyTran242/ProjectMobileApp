@@ -36,6 +36,7 @@ import com.example.lab2.retrofit.ApiBanHang;
 import com.example.lab2.retrofit.RetrofitClient;
 import com.example.lab2.utils.Utils;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -74,6 +75,34 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         Paper.init(this);
+        /**
+         * XỬ LÝ THÔNG TIN USER ĐĂNG NHẬP
+         *
+         * Mục đích: Load thông tin user đã đăng nhập trước đó từ local storage
+         * và khởi tạo Utils.user_current để tránh NullPointerException
+         *
+         * Luồng hoạt động:
+         * 1. Kiểm tra xem có user nào đã lưu trong Paper (SharedPreferences) không
+         * 2. Nếu có: Load user đó vào Utils.user_current
+         * 3. Nếu không: Tạo user mặc định với thông tin "Guest"
+         *
+         * Lưu ý:
+         * - Paper.book().read("user") trả về User object hoặc null
+         * - Utils.user_current được sử dụng xuyên suốt app để hiển thị thông tin user
+         * - Việc khởi tạo user mặc định giúp tránh crash khi truy cập AccountSecurityActivity
+         */
+        if (Paper.book().read("user") != null) {
+            User user = Paper.book().read("user");
+            Utils.user_current = user;
+            Log.d("MainActivity", "User loaded: " + user.getUsername());
+        } else {
+            Log.d("MainActivity", "No user found in Paper");
+            // Khởi tạo user mặc định để tránh null
+            Utils.user_current = new User();
+            Utils.user_current.setUsername("Guest");
+            Utils.user_current.setName("Guest User");
+        }
+
         if(Paper.book().read("user") != null) {
             User user = Paper.book().read("user");
             Utils.user_current = user;
@@ -81,6 +110,29 @@ public class MainActivity extends AppCompatActivity  {
         getToken();
         AnhXa();
         ActionBar();
+
+        // THÊM: Xử lý BottomNavigationView
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) {
+                return true; // Đã ở trang chủ
+            }
+            if (id == R.id.nav_message) {
+                startActivity(new Intent(this, MessageActivity.class));
+                return true;
+            }
+            if (id == R.id.nav_account) {
+                startActivity(new Intent(this, AccountSecurityActivity.class));
+                return true;
+            }
+            if (id == R.id.nav_favorite) {
+                startActivity(new Intent(this, FavoritesActivity.class));
+                return true;
+            }
+            return false;
+        });
+
         if(isConnected(this)) {
            // Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_LONG).show();
             ActionViewFlipper();
@@ -90,6 +142,7 @@ public class MainActivity extends AppCompatActivity  {
         }else{
             Toast.makeText(getApplicationContext(), "không co ket noi", Toast.LENGTH_LONG).show();
         }
+
     }
     private void getToken() {
         FirebaseMessaging.getInstance().getToken()

@@ -18,11 +18,30 @@
         android:theme="@style/Theme.FirstAndroidApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-    <!--        Khai báo parent activity để hệ thống hiểu luồng navigation:-->
+
         <activity
             android:name=".activity.ProfileActivity"
             android:parentActivityName=".activity.MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".activity.AccountSecurityActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.ChangePasswordActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".activity.MessageActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".activity.FavoritesActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:exported="true" />
+
     <activity
             android:name=".activity.ThemSPActivity"
             android:exported="false" />

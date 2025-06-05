@@ -13,4 +13,12 @@
     <color name="background_color">#ecf0f3</color>
     <color name="highlight">#ffffff</color>
     <color name="shadow_color">#d9dbde</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="toolbar_bg">#FFFFFF</color>
+    <color name="toolbar_nav_icon">#000000</color>
+    <color name="toolbar_title_text">#000000</color>
+    <color name="divider_gray">#BDBDBD</color>
+    <color name="nav_item_color_state">#FF6200EE</color>
+    <color name="section_header_bg">#E0E0E0</color>
 </resources>
