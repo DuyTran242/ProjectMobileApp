@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Ví dụ định nghĩa chiều cao status bar -->
     <dimen name="status_bar_height">24dp</dimen>
-
-    <!-- Các dimen khác, ví dụ margin, padding, textSize -->
-    <dimen name="padding_small">8dp</dimen>
-    <dimen name="padding_medium">16dp</dimen>
-    <dimen name="text_size_title">18sp</dimen>
 </resources>
