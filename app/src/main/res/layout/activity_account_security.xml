@@ -1,397 +1,110 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <!-- 1. AppBarLayout chứa Toolbar “Tài khoản & Bảo mật” và tiêu đề “Tài Khoản” -->
-    <com.google.android.material.appbar.AppBarLayout
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_account_security"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/toolbar_bg"
-        android:paddingTop="@dimen/status_bar_height">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/white"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="Tài khoản &amp; Bảo mật"
+        app:titleTextColor="@android:color/black" />
 
-        <!-- Toolbar chính -->
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_account_security"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/toolbar_bg"
-            android:elevation="0dp"
-            app:navigationIcon="@drawable/ic_arrow_back"
-            app:navigationIconTint="@color/toolbar_nav_icon"
-            app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-            app:title="Tài khoản &amp; Bảo mật"
-            app:titleTextColor="@color/toolbar_title_text" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <!-- Tiêu đề “Tài Khoản” ngay bên dưới Toolbar -->
-        <TextView
-            android:id="@+id/tv_section_account"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="Tài Khoản"
-            android:textSize="16sp"
-            android:textColor="@color/text_primary" />
-
-        <!-- 3. Mục “Hồ sơ của tôi” (dòng clickable) -->
         <LinearLayout
-            android:id="@+id/row_user_profile"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
-
-            <!-- Text “Hồ sơ của tôi” chiếm hết không gian có thể -->
-            <TextView
-                android:id="@+id/tv_user_profile"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Hồ sơ của tôi"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp" />
-
-            <!-- Icon mũi tên “chevron right” để báo hiển thị chi tiết -->
-            <ImageView
-                android:id="@+id/ic_chevron_profile"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_chevron_right"
-                app:tint="@color/text_secondary" />
-        </LinearLayout>
-
-        <!-- ===== Phần “Tên người dùng” ngay dưới “Hồ sơ của tôi” ===== -->
-        <LinearLayout
-            android:id="@+id/row_username"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:background="?attr/selectableItemBackground">
-
-            <!-- Nhãn “Tên người dùng” -->
-            <TextView
-                android:id="@+id/tv_username_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Tên người dùng"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp" />
-
-            <!-- Giá trị thực tế của tên người dùng -->
-            <TextView
-                android:id="@+id/tv_username_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="chinhthiphiip"
-                android:textColor="@color/text_secondary"
-                android:textSize="16sp" />
-        </LinearLayout>
-        <!-- ===== Kết thúc phần “Tên người dùng” ===== -->
-
-        <!-- ===== Phần “Điện thoại” nằm ngay dưới “Tên người dùng” ===== -->
-        <LinearLayout
-            android:id="@+id/row_phone"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:background="?attr/selectableItemBackground">
-
-            <!-- Nhãn “Điện thoại” -->
-            <TextView
-                android:id="@+id/tv_phone_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Điện thoại"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp" />
-
-            <!-- Giá trị thực tế của điện thoại (ví dụ: “*****35”) -->
-            <TextView
-                android:id="@+id/tv_phone_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="*****35"
-                android:textColor="@color/text_secondary"
-                android:textSize="16sp" />
-
-            <!-- Icon mũi tên “chevron right” để báo hiển thị chi tiết -->
-            <ImageView
-                android:id="@+id/ic_chevron_phone"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_chevron_right"
-                app:tint="@color/text_secondary" />
-        </LinearLayout>
-        <!-- ===== Kết thúc phần “Điện thoại” ===== -->
-
-        <!-- ===== Phần “Email nhận hóa đơn” nằm ngay dưới “Điện thoại” ===== -->
-        <LinearLayout
-            android:id="@+id/row_invoice_email"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:background="?attr/selectableItemBackground">
-
-            <!-- Nhãn “Email nhận hóa đơn” -->
-            <TextView
-                android:id="@+id/tv_invoice_email_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Email nhận hóa đơn"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp" />
-
-            <!-- Giá trị thực tế của Email (ví dụ: “c********2@gmail.com”) -->
-            <TextView
-                android:id="@+id/tv_invoice_email_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="c********2@gmail.com"
-                android:textColor="@color/text_secondary"
-                android:textSize="16sp" />
-
-            <!-- Icon mũi tên “chevron right” để báo hiển thị chi tiết -->
-            <ImageView
-                android:id="@+id/ic_chevron_invoice_email"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_chevron_right"
-                app:tint="@color/text_secondary" />
-        </LinearLayout>
-        <!-- ===== Kết thúc phần “Email nhận hóa đơn” ===== -->
-
-        <!-- ===== Phần “Tài khoản mạng xã hội” nằm ngay dưới “Email nhận hóa đơn” ===== -->
-        <LinearLayout
-            android:id="@+id/row_social_account"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:background="?attr/selectableItemBackground">
-
-            <!-- Nhãn “Tài khoản mạng xã hội” -->
-            <TextView
-                android:id="@+id/tv_social_account_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Tài khoản mạng xã hội"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp" />
-
-            <!-- Icon mũi tên “chevron right” để báo hiển thị chi tiết -->
-            <ImageView
-                android:id="@+id/ic_chevron_social_account"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_chevron_right"
-                app:tint="@color/text_secondary" />
-        </LinearLayout>
-        <!-- ===== Kết thúc phần “Tài khoản mạng xã hội” ===== -->
-
-        <!-- ===== Phần “Đổi mật khẩu” nằm ngay dưới “Tài khoản mạng xã hội” ===== -->
-        <LinearLayout
-            android:id="@+id/row_change_password"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:background="?attr/selectableItemBackground">
-
-            <!-- Nhãn “Đổi mật khẩu” -->
-            <TextView
-                android:id="@+id/tv_change_password_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Đổi mật khẩu"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp" />
-
-            <!-- Icon mũi tên “chevron right” để báo hiển thị chi tiết -->
-            <ImageView
-                android:id="@+id/ic_chevron_change_password"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_chevron_right"
-                app:tint="@color/text_secondary" />
-        </LinearLayout>
-        <!-- ===== Kết thúc phần “Đổi mật khẩu” ===== -->
-
-        <!-- ===== Phần “Xác Thực Bằng Dấu Vân Tay” nằm ngay dưới “Đổi mật khẩu” ===== -->
-        <LinearLayout
-            android:id="@+id/row_fingerprint_auth"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:background="?attr/selectableItemBackground">
-
-            <!-- Nhãn “Xác Thực Bằng Dấu Vân Tay” -->
-            <TextView
-                android:id="@+id/tv_fingerprint_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Xác Thực Bằng Dấu Vân Tay"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp" />
-
-            <!-- Toggle Switch để bật/tắt xác thực vân tay -->
-            <Switch
-                android:id="@+id/switch_fingerprint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:padding="8dp" />
-        </LinearLayout>
-        <!-- ===== Kết thúc phần “Xác Thực Bằng Dấu Vân Tay” ===== -->
-
-        <!-- ===== Phần “Bảo Mật” (tiêu đề section) nằm ngay dưới “Xác Thực Bằng Dấu Vân Tay” ===== -->
-        <TextView
-            android:id="@+id/tv_section_security"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="Bảo Mật"
-            android:textSize="16sp"
-            android:textColor="@color/text_primary"
-            android:background="@color/section_header_bg" />
-        <!-- ===== Kết thúc phần “Bảo Mật” ===== -->
-
-        <!-- ===== Phần “Kiểm tra hoạt động của tài khoản” nằm ngay dưới “Bảo Mật” ===== -->
-        <LinearLayout
-            android:id="@+id/row_check_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:background="?attr/selectableItemBackground">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <!-- Container đứng dọc để chứa tiêu đề và mô tả -->
-            <LinearLayout
-                android:layout_width="0dp"
+            <!-- Tiêu đề -->
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:text="Tài Khoản"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
 
-                <!-- Tiêu đề chính -->
+            <!-- Hồ sơ của tôi -->
+            <LinearLayout
+                android:id="@+id/row_user_profile"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
                 <TextView
-                    android:id="@+id/tv_check_activity_title"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Kiểm tra hoạt động của tài khoản"
-                    android:textColor="@color/text_primary"
+                    android:layout_weight="1"
+                    android:text="Hồ sơ của tôi"
                     android:textSize="16sp" />
 
-                <!-- Mô tả phụ -->
                 <TextView
-                    android:id="@+id/tv_check_activity_subtitle"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kiểm tra những lần đăng nhập và thay đổi tài khoản trong 30 ngày gần nhất"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="14sp"
-                    android:paddingTop="4dp" />
+                    android:text=">" />
             </LinearLayout>
 
-            <!-- Icon mũi tên “chevron right” để báo hiển thị chi tiết -->
-            <ImageView
-                android:id="@+id/ic_chevron_check_activity"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_chevron_right"
-                app:tint="@color/text_secondary" />
-        </LinearLayout>
-        <!-- ===== Kết thúc phần “Kiểm tra hoạt động của tài khoản” ===== -->
-
-        <!-- ===== Phần “Quản lý thiết bị đăng nhập” nằm ngay dưới “Kiểm tra hoạt động của tài khoản” ===== -->
-        <LinearLayout
-            android:id="@+id/row_manage_devices"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:background="?attr/selectableItemBackground">
-
-            <!-- Container đứng dọc để chứa tiêu đề và mô tả -->
+            <!-- Tên người dùng -->
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp">
 
-                <!-- Tiêu đề chính -->
                 <TextView
-                    android:id="@+id/tv_manage_devices_title"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Quản lý thiết bị đăng nhập"
-                    android:textColor="@color/text_primary"
+                    android:layout_weight="1"
+                    android:text="Tên người dùng"
                     android:textSize="16sp" />
 
-                <!-- Mô tả phụ -->
                 <TextView
-                    android:id="@+id/tv_manage_devices_subtitle"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_username_value"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="4dp"
-                    android:text="Quản lý các thiết bị đã đăng nhập vào tài khoản Shopee"
-                    android:textColor="@color/text_secondary"
+                    android:text="Chưa đăng nhập"
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- Icon mũi tên “chevron right” để báo hiển thị chi tiết -->
-            <ImageView
-                android:id="@+id/ic_chevron_manage_devices"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_chevron_right"
-                app:tint="@color/text_secondary" />
+            <!-- Đổi mật khẩu -->
+            <LinearLayout
+                android:id="@+id/row_change_password"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackground">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Đổi mật khẩu"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=">" />
+            </LinearLayout>
+
         </LinearLayout>
-        <!-- ===== Kết thúc phần “Quản lý thiết bị đăng nhập” ===== -->
 
-    </com.google.android.material.appbar.AppBarLayout>
+    </ScrollView>
 
-    <!-- 2. Divider (ngang kẻ) ngay bên dưới phần “Tài Khoản” -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider_gray" />
-
-    <!-- Các phần nội dung khác sẽ tiếp tục ở đây... -->
-
-</merge>
+</LinearLayout>

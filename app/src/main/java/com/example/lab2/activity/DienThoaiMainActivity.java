@@ -134,14 +134,9 @@ public class DienThoaiMainActivity extends AppCompatActivity {
                             Log.d("logg", throwable.getMessage());
                             Toast.makeText(getApplicationContext(), "không kết nối server", Toast.LENGTH_SHORT).show();
                         }
-
                 )
         );
-
-
-
     }
-
     private void ActionToolBar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

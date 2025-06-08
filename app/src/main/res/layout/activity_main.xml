@@ -52,14 +52,7 @@
                             android:layout_marginTop="15dp"
                             android:src="@drawable/ic_cart_24" />
                     </FrameLayout>
-                    <!-- Icon bánh răng mới -->
-                    <ImageView
-                        android:id="@+id/imgSettings"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="8dp"
-                        android:src="@drawable/ic_settings_24"
-                        android:contentDescription="@string/settings"/>
+
                 </LinearLayout>
 
 

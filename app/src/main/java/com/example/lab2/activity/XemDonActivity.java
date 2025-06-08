@@ -123,7 +123,7 @@ AlertDialog dialog;
         list.add("Đơn hàng đã giao cho");
         list.add("Thành công");
         list.add("Đơn hàng đã hủy");
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, list);
         spinner.setAdapter(adapter);
         spinner.setSelection(donHang.getStatus());
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
