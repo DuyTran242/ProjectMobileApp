@@ -14,4 +14,14 @@
     <color name="highlight">#ffffff</color>
     <color name="shadow_color">#d9dbde</color>
     <color name="section_header_bg">#E0E0E0</color>
+    <!-- Thêm các color bị thiếu activity_thanh_toan.xml -->
+    <color name="material_dynamic_primary60">#6750A4</color>
+    <color name="material_dynamic_primary10">#21005D</color>
+    <color name="material_dynamic_primary20">#371E73</color>
+    <color name="material_dynamic_primary30">#4F378B</color>
+    <color name="material_dynamic_primary40">#6750A4</color>
+    <color name="material_dynamic_primary50">#7F5AF0</color>
+    <color name="material_dynamic_primary70">#D0BCFF</color>
+    <color name="material_dynamic_primary80">#EADDFF</color>
+    <color name="material_dynamic_primary90">#F6EDFF</color>
 </resources>
