@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/payment_success_background"
-    tools:context=".PaymentNotificationActivity">
+    tools:context=".activity.PaymentNotificationActivity">
 
     <!-- Header -->
     <androidx.constraintlayout.widget.ConstraintLayout

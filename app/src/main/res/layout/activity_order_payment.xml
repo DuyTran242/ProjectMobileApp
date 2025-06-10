@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/zalopay_background"
-    tools:context=".OrderPaymentActivity">
+    tools:context=".activity.OrderPaymentActivity">
 
     <!-- Header -->
     <androidx.constraintlayout.widget.ConstraintLayout
