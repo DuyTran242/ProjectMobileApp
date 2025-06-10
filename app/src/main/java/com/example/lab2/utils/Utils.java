@@ -7,9 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
-    public static final String BASE_URL = "http://192.168.137.9/banhang/";
+    public static final String BASE_URL = "http://172.17.118.142/banhang/";
     public static List<GioHang> manggiohang;
     public static List<GioHang> mangmuahang = new ArrayList<>();
     public static User user_current = new User();
+
+    // Hoặc thêm method để ensure initialization
+    public static void initCart() {
+        if (manggiohang == null) {
+            manggiohang = new ArrayList<>();
+        }
+    }
 
 }

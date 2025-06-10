@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="20dp"
+    android:height="20dp"
+    android:viewportWidth="20"
+    android:viewportHeight="20">
+
+    <!-- Gift box -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M4,7h5v6h-5z" />
+
+    <!-- Gift ribbon -->
+    <path
+        android:fillColor="#FF8A50"
+        android:pathData="M6,5c-1,0 -2,1 -2,2h4c0,-1 -1,-2 -2,-2z" />
+
+    <!-- Shield -->
+    <path
+        android:fillColor="#0068FF"
+        android:pathData="M12,6l2,-1c1,0 2,1 2,3c0,2 -2,4 -4,5c-2,-1 -4,-3 -4,-5c0,-2 1,-3 2,-3l2,1z" />
+
+    <!-- Shield check -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M13,9l-1,1l-1,-1l0.5,-0.5l0.5,0.5l1,-1z" />
+
+</vector>

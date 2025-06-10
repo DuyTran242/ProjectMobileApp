@@ -73,6 +73,11 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        // THÊM: Đảm bảo giỏ hàng được khởi tạo để tránh NullPointerException
+        if (Utils.manggiohang == null) {
+            Utils.manggiohang = new ArrayList<>();
+        }
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         Paper.init(this);
         /**
