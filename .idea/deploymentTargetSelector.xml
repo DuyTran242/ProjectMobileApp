@@ -4,6 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         <DropdownSelection timestamp="2025-06-11T07:28:41.435834700Z">
           <Target type="DEFAULT_BOOT">
@@ -15,6 +16,12 @@
             <handle>
               <DeviceId pluginId="PhysicalDevice" identifier="serial=0161B08V2310A4B4" />
 >>>>>>> 98f2c10f206a50ebd0716664b37238986218af7b
+=======
+        <DropdownSelection timestamp="2025-06-11T08:31:26.549001700Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\PC\.android\avd\Pixel_8_Pro.avd" />
+>>>>>>> Stashed changes
             </handle>
           </Target>
         </DropdownSelection>

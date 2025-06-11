@@ -3,6 +3,7 @@ package com.example.lab2.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.example.lab2.R;
 import com.example.lab2.retrofit.ApiBanHang;
 import com.example.lab2.retrofit.RetrofitClient;
 import com.example.lab2.utils.Utils;
+<<<<<<< Updated upstream
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.Identity;
 import com.google.android.gms.auth.api.identity.SignInClient;
@@ -26,6 +28,14 @@ import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.firebase.auth.AuthCredential;
+=======
+import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+>>>>>>> Stashed changes
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -34,6 +44,12 @@ import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 public class DangNhapActivity extends AppCompatActivity {
 
@@ -46,16 +62,26 @@ public class DangNhapActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
 
+<<<<<<< Updated upstream
     private SignInClient oneTapClient;
     private BeginSignInRequest signInRequest;
     private static final int REQ_ONE_TAP = 2;
+=======
+    CallbackManager callbackManager;
+    LoginButton btnLoginFacebook;
+>>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dang_nhap);
+<<<<<<< Updated upstream
 
+=======
+        FacebookSdk.setAutoInitEnabled(true);
+        FacebookSdk.fullyInitialize();
+>>>>>>> Stashed changes
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -64,6 +90,7 @@ public class DangNhapActivity extends AppCompatActivity {
 
         initView();
         initControl();
+<<<<<<< Updated upstream
         Paper.book().destroy(); // Xoá dữ liệu cũ (nếu có)
 
         // Khởi tạo Google Sign-In
@@ -77,6 +104,10 @@ public class DangNhapActivity extends AppCompatActivity {
                                 .build())
                 .setAutoSelectEnabled(true)
                 .build();
+=======
+        setupFacebookLogin();
+        Paper.book().destroy(); // xóa toàn bộ dữ liệu lưu trước đó
+>>>>>>> Stashed changes
     }
 
     private void initView() {
@@ -174,6 +205,7 @@ public class DangNhapActivity extends AppCompatActivity {
                 ));
     }
 
+<<<<<<< Updated upstream
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -201,6 +233,31 @@ public class DangNhapActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+=======
+    private void setupFacebookLogin() {
+        callbackManager = CallbackManager.Factory.create();
+        LoginButton loginButton = findViewById(R.id.btnFacebookLogin);
+        loginButton.setPermissions("email", "public_profile");
+
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                AccessToken accessToken = loginResult.getAccessToken();
+                Toast.makeText(DangNhapActivity.this, "Đăng nhập Facebook thành công", Toast.LENGTH_SHORT).show();
+                // TODO: xử lý accessToken để đăng nhập vào hệ thống của bạn nếu cần
+            }
+
+            @Override
+            public void onCancel() {
+                Toast.makeText(DangNhapActivity.this, "Đăng nhập Facebook bị hủy", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Toast.makeText(DangNhapActivity.this, "Lỗi đăng nhập Facebook: " + error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+>>>>>>> Stashed changes
     }
 
     @Override
