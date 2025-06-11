@@ -32,6 +32,11 @@
     <string name="language">Ngôn ngữ - Language</string>
     <string name="language_value">Tiếng Việt</string>
     <string name="settings_title">Cài đặt</string>
+<<<<<<< HEAD
     <string name="default_web_client_id">1234567890-abcdefg.apps.googleusercontent.com</string>
 
+=======
+    <string name="item_count_format">%s sản phẩm</string>
+    <string name="amount_format">%s ₫</string>
+>>>>>>> 98f2c10f206a50ebd0716664b37238986218af7b
 </resources>

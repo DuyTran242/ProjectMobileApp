@@ -33,8 +33,6 @@ public class ChiTietActivity extends AppCompatActivity {
     SanPhamMoi sanPhamMoi;
     NotificationBadge badge;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,12 +127,16 @@ public class ChiTietActivity extends AppCompatActivity {
                 startActivity(giohang);
             }
         });
-        if(Utils.manggiohang != null) {
+
+        // Fix: Kiểm tra null và initialize nếu cần
+        if(Utils.manggiohang != null && !Utils.manggiohang.isEmpty()) {
             int totalItem = 0;
             for(int i = 0; i < Utils.manggiohang.size(); i++) {
                 totalItem += Utils.manggiohang.get(i).getSoluong();
             }
             badge.setText(String.valueOf(totalItem));
+        } else {
+            badge.setText("0");
         }
     }
     private void ActionToolBar() {
@@ -152,10 +154,17 @@ public class ChiTietActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        int totalItem = 0;
-        for(int i = 0; i < Utils.manggiohang.size(); i++) {
-            totalItem += Utils.manggiohang.get(i).getSoluong();
+
+        // Fix: Kiểm tra null trước khi gọi .size()
+        if (Utils.manggiohang != null && !Utils.manggiohang.isEmpty()) {
+            int totalItem = 0;
+            for(int i = 0; i < Utils.manggiohang.size(); i++) {
+                totalItem += Utils.manggiohang.get(i).getSoluong();
+            }
+            badge.setText(String.valueOf(totalItem));
+        } else {
+            // Nếu giỏ hàng null hoặc empty, hiển thị 0
+            badge.setText("0");
         }
-        badge.setText(String.valueOf(totalItem));
     }
 }
