@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "415216330399",
-    "project_id": "appbanhang-25de9",
-    "storage_bucket": "appbanhang-25de9.firebasestorage.app"
+    "project_number": "522952041609",
+    "project_id": "appbanhang-9612a",
+    "storage_bucket": "appbanhang-9612a.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:415216330399:android:1fde22336a9d877769e4aa",
+        "mobilesdk_app_id": "1:522952041609:android:5e8a7c2669b356d7f6d258",
         "android_client_info": {
           "package_name": "com.example.lab2"
         }
       },
       "oauth_client": [
         {
-          "client_id": "415216330399-6umm4dkj4s4h9fhhrukivp0u305gh10p.apps.googleusercontent.com",
+          "client_id": "522952041609-vpns9qgegmj8spi47fadh1q4f1j8cm7n.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.lab2",
-            "certificate_hash": "eef840b4ddb137acb128830a43f34551d7813107"
+            "certificate_hash": "b3d746e2b42810919e7af0f7f6e2b802a4b41bce"
           }
         },
         {
-          "client_id": "415216330399-s9tnbq8rmr9bcou75u02hjlcumlibfpm.apps.googleusercontent.com",
+          "client_id": "522952041609-fce0bofgbk0oeparkispfjo8g4nohloo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBbNrAZ3BJ6q3iPHPx935sbV2o4hbGSYIg"
+          "current_key": "AIzaSyDUTNzd8ZOGJQYNPvzXJS7jCDGaB85HUU8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "415216330399-s9tnbq8rmr9bcou75u02hjlcumlibfpm.apps.googleusercontent.com",
+              "client_id": "522952041609-fce0bofgbk0oeparkispfjo8g4nohloo.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

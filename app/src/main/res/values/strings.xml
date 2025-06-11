@@ -32,5 +32,6 @@
     <string name="language">Ngôn ngữ - Language</string>
     <string name="language_value">Tiếng Việt</string>
     <string name="settings_title">Cài đặt</string>
+    <string name="default_web_client_id">1234567890-abcdefg.apps.googleusercontent.com</string>
 
 </resources>
