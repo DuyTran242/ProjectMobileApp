@@ -19,12 +19,13 @@ import com.example.lab2.R;
 import com.example.lab2.retrofit.ApiBanHang;
 import com.example.lab2.retrofit.RetrofitClient;
 import com.example.lab2.utils.Utils;
-import com.google.android.gms.auth.api.identity.BeginSignInRequest;
-import com.google.android.gms.auth.api.identity.Identity;
-import com.google.android.gms.auth.api.identity.SignInClient;
-import com.google.android.gms.auth.api.identity.SignInCredential;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -53,15 +54,15 @@ public class DangNhapActivity extends AppCompatActivity {
     TextView txtdangki, txtresetpass;
     EditText email_txt, pass_txt;
     AppCompatButton btndangnhap;
+    SignInButton btnGoogleLogin;
     ApiBanHang apiBanHang;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     boolean isLogin = false;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
 
-    private SignInClient oneTapClient;
-    private BeginSignInRequest signInRequest;
-    private static final int REQ_ONE_TAP = 2;
+    private GoogleSignInClient mGoogleSignInClient;
+    private static final int REQ_ONE_TAP = 1000;
 
     private CallbackManager callbackManager;
     AppCompatButton btnFacebookLogin;
@@ -88,17 +89,13 @@ public class DangNhapActivity extends AppCompatActivity {
 
         Paper.book().destroy();
 
-        // Google Sign-In setup
-        oneTapClient = Identity.getSignInClient(this);
-        signInRequest = BeginSignInRequest.builder()
-                .setGoogleIdTokenRequestOptions(
-                        BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                                .setSupported(true)
-                                .setServerClientId(getString(R.string.default_web_client_id))
-                                .setFilterByAuthorizedAccounts(false)
-                                .build())
-                .setAutoSelectEnabled(true)
+        // Cấu hình Google Sign-In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
                 .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     private void initView() {
@@ -109,6 +106,7 @@ public class DangNhapActivity extends AppCompatActivity {
         email_txt = findViewById(R.id.email_id);
         pass_txt = findViewById(R.id.pass_id);
         btndangnhap = findViewById(R.id.btndangnhap);
+        btnGoogleLogin = findViewById(R.id.btnGoogleLogin);
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
@@ -158,20 +156,13 @@ public class DangNhapActivity extends AppCompatActivity {
             }
         });
 
-        SignInButton btnGoogleLogin = findViewById(R.id.btnGoogleLogin);
         btnGoogleLogin.setOnClickListener(v -> {
-            oneTapClient.beginSignIn(signInRequest)
-                    .addOnSuccessListener(this, result -> {
-                        try {
-                            startIntentSenderForResult(result.getPendingIntent().getIntentSender(),
-                                    REQ_ONE_TAP, null, 0, 0, 0);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    })
-                    .addOnFailureListener(this, e -> {
-                        Toast.makeText(this, "Không thể đăng nhập bằng Google", Toast.LENGTH_SHORT).show();
-                    });
+            // Đăng xuất để không tự động đăng nhập lại
+            firebaseAuth.signOut();
+            mGoogleSignInClient.signOut().addOnCompleteListener(task -> {
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, REQ_ONE_TAP);
+            });
         });
 
         btnFacebookLogin.setOnClickListener(v -> {
@@ -241,18 +232,51 @@ public class DangNhapActivity extends AppCompatActivity {
 
         // Google One Tap
         if (requestCode == REQ_ONE_TAP) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
-                SignInCredential credential = oneTapClient.getSignInCredentialFromIntent(data);
-                String idToken = credential.getGoogleIdToken();
-                if (idToken != null) {
-                    AuthCredential firebaseCredential = GoogleAuthProvider.getCredential(idToken, null);
-                    firebaseAuth.signInWithCredential(firebaseCredential)
-                            .addOnCompleteListener(this, task -> {
-                                if (task.isSuccessful()) {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                if (account != null) {
+                    AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+                    firebaseAuth.signInWithCredential(credential)
+                            .addOnCompleteListener(this, authTask -> {
+                                if (authTask.isSuccessful()) {
                                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                                     if (firebaseUser != null) {
                                         String email = firebaseUser.getEmail();
                                         dangNhap(email, "", "google");
+                                        String username = firebaseUser.getDisplayName();
+                                        String mobile = "0";
+                                        String uid = firebaseUser.getUid();
+
+                                        compositeDisposable.add(apiBanHang.dangNhap(email, "", "google")
+                                                .subscribeOn(Schedulers.io())
+                                                .observeOn(AndroidSchedulers.mainThread())
+                                                .subscribe(userModel -> {
+                                                    if (userModel.isSuccess()) {
+                                                        isLogin = true;
+                                                        Paper.book().write("isLogin", isLogin);
+                                                        Utils.user_current = userModel.getResult().get(0);
+                                                        Paper.book().write("user", Utils.user_current);
+                                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                        finish();
+                                                    } else {
+                                                        // Nếu chưa có tài khoản thì đăng ký
+                                                        compositeDisposable.add(apiBanHang.dangKi(email, "", username, mobile, uid)
+                                                                .subscribeOn(Schedulers.io())
+                                                                .observeOn(AndroidSchedulers.mainThread())
+                                                                .subscribe(registerModel -> {
+                                                                    if (registerModel.isSuccess()) {
+                                                                        dangNhap(email, "", "google");
+                                                                    } else {
+                                                                        Toast.makeText(this, "Đăng ký tài khoản Google thất bại", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                }, err -> {
+                                                                    Toast.makeText(this, "Lỗi đăng ký: " + err.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                }));
+                                                    }
+                                                }, err -> {
+                                                    Toast.makeText(this, "Lỗi đăng nhập: " + err.getMessage(), Toast.LENGTH_SHORT).show();
+                                                }));
                                     }
                                 } else {
                                     Toast.makeText(this, "Đăng nhập Google thất bại", Toast.LENGTH_SHORT).show();

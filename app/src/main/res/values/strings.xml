@@ -32,9 +32,11 @@
     <string name="language">Ngôn ngữ - Language</string>
     <string name="language_value">Tiếng Việt</string>
     <string name="settings_title">Cài đặt</string>
+
     <string name="default_web_client_id">1234567890-abcdefg.apps.googleusercontent.com</string>
     <string name="item_count_format">%s sản phẩm</string>
     <string name="amount_format">%s ₫</string>
     <string name="facebook_app_id">1046657007560804</string>
     <string name="fb_login_protocol_scheme">fb1046657007560804</string>
+
 </resources>
