@@ -70,11 +70,11 @@ dependencies {
     implementation(libs.googleid)
     implementation(libs.firebase.messaging)
     implementation(fileTree(mapOf(
-        "dir" to "C:\\Users\\WIN11PRO\\OneDrive\\Máy tính\\ZaloPaylib",
+//        "dir" to "C:\\Users\\WIN11PRO\\OneDrive\\Máy tính\\ZaloPaylib",
+        "dir" to "D:\\ZaloPaylib\\ZaloPaylib",
         "include" to listOf("*.aar", "*.jar"),
         "exclude" to listOf("")
     )))
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -100,6 +100,7 @@ dependencies {
     // Java Mail API
     implementation("com.sun.mail:android-mail:1.6.7")
     implementation("com.sun.mail:android-activation:1.6.7")
+
     implementation("com.google.android.gms:play-services-auth:21.0.0")
 
     implementation("com.squareup.okhttp3:okhttp:4.6.0")
