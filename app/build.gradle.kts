@@ -69,15 +69,12 @@ dependencies {
     implementation(libs.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation(libs.firebase.messaging)
-<<<<<<< Updated upstream
     implementation(fileTree(mapOf(
         "dir" to "C:\\Users\\WIN11PRO\\OneDrive\\Máy tính\\ZaloPaylib",
         "include" to listOf("*.aar", "*.jar"),
         "exclude" to listOf("")
     )))
-=======
-    implementation(libs.facebook.login)
->>>>>>> Stashed changes
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -103,11 +100,11 @@ dependencies {
     // Java Mail API
     implementation("com.sun.mail:android-mail:1.6.7")
     implementation("com.sun.mail:android-activation:1.6.7")
-<<<<<<< HEAD
     implementation("com.google.android.gms:play-services-auth:21.0.0")
-=======
+
     implementation("com.squareup.okhttp3:okhttp:4.6.0")
     implementation("commons-codec:commons-codec:1.14")
->>>>>>> 98f2c10f206a50ebd0716664b37238986218af7b
+
+    implementation("com.facebook.android:facebook-login:16.2.0")
 
 }
