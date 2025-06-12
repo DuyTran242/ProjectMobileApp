@@ -36,6 +36,19 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
+
+import com.google.firebase.auth.FacebookAuthProvider;
+
+import java.util.List;
+
 public class DangNhapActivity extends AppCompatActivity {
 
     TextView txtdangki, txtresetpass;
@@ -51,6 +64,9 @@ public class DangNhapActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private static final int REQ_ONE_TAP = 1000;
 
+    private CallbackManager callbackManager;
+    AppCompatButton btnFacebookLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,9 +79,15 @@ public class DangNhapActivity extends AppCompatActivity {
             return insets;
         });
 
+        callbackManager = CallbackManager.Factory.create();
+
         initView();
         initControl();
-        Paper.book().destroy(); // Xoá dữ liệu cũ (nếu có)
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(getApplication());
+
+        Paper.book().destroy();
 
         // Cấu hình Google Sign-In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -92,6 +114,7 @@ public class DangNhapActivity extends AppCompatActivity {
             email_txt.setText(Paper.book().read("email"));
             pass_txt.setText(Paper.book().read("pass"));
         }
+        btnFacebookLogin = findViewById(R.id.btnFacebookLogin);
     }
 
     private void initControl() {
@@ -141,6 +164,44 @@ public class DangNhapActivity extends AppCompatActivity {
                 startActivityForResult(signInIntent, REQ_ONE_TAP);
             });
         });
+
+        btnFacebookLogin.setOnClickListener(v -> {
+            LoginManager.getInstance().logInWithReadPermissions(
+                    DangNhapActivity.this,
+                    List.of("email", "public_profile")
+            );
+        });
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        AccessToken token = loginResult.getAccessToken();
+                        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+
+                        firebaseAuth.signInWithCredential(credential)
+                                .addOnCompleteListener(DangNhapActivity.this, task -> {
+                                    if (task.isSuccessful()) {
+                                        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                                        if (firebaseUser != null) {
+                                            String email = firebaseUser.getEmail();
+                                            dangNhap(email, "", "facebook");
+                                        }
+                                    } else {
+                                        Toast.makeText(DangNhapActivity.this, "Xác thực Facebook thất bại", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Toast.makeText(DangNhapActivity.this, "Hủy đăng nhập Facebook", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(FacebookException error) {
+                        Toast.makeText(DangNhapActivity.this, "Lỗi đăng nhập Facebook", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void dangNhap(String email, String pass, String authType) {
@@ -169,6 +230,7 @@ public class DangNhapActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // Google One Tap
         if (requestCode == REQ_ONE_TAP) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -181,6 +243,7 @@ public class DangNhapActivity extends AppCompatActivity {
                                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                                     if (firebaseUser != null) {
                                         String email = firebaseUser.getEmail();
+                                        dangNhap(email, "", "google");
                                         String username = firebaseUser.getDisplayName();
                                         String mobile = "0";
                                         String uid = firebaseUser.getUid();
@@ -224,12 +287,20 @@ public class DangNhapActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
+        // Facebook Login
+        if (callbackManager != null) {
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+        }
     }
+
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (Utils.user_current.getEmail() != null && Utils.user_current.getPass() != null) {
+        if (Utils.user_current != null &&
+                Utils.user_current.getEmail() != null &&
+                Utils.user_current.getPass() != null) {
             email_txt.setText(Utils.user_current.getEmail());
             pass_txt.setText(Utils.user_current.getPass());
         }

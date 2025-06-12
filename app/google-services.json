@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "522952041609",
-    "project_id": "appbanhang-9612a",
-    "storage_bucket": "appbanhang-9612a.firebasestorage.app"
+    "project_number": "116982099645",
+    "project_id": "apibanhang",
+    "storage_bucket": "apibanhang.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:522952041609:android:5e8a7c2669b356d7f6d258",
+        "mobilesdk_app_id": "1:116982099645:android:10867c93c472b564d091d4",
         "android_client_info": {
           "package_name": "com.example.lab2"
         }
@@ -28,7 +28,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDUTNzd8ZOGJQYNPvzXJS7jCDGaB85HUU8"
+          "current_key": "AIzaSyASkjpGgiFOaEiz_smKHjidjSPzUS4TJAM"
         }
       ],
       "services": {
