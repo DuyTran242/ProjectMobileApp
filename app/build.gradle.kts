@@ -15,6 +15,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        resValue("string", "facebook_client_token", "d371cb29dffe82be57bc411795bce9aa")
     }
 
     packaging {
@@ -71,7 +72,8 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(fileTree(mapOf(
 //        "dir" to "C:\\Users\\WIN11PRO\\OneDrive\\Máy tính\\ZaloPaylib",
-        "dir" to "D:\\ZaloPaylib\\ZaloPaylib",
+//        "dir" to "D:\\ZaloPaylib\\ZaloPaylib",
+        "dir" to "E:\\Download\\ZaloPaylib",
         "include" to listOf("*.aar", "*.jar"),
         "exclude" to listOf("")
     )))
@@ -110,7 +112,6 @@ dependencies {
 
     implementation("com.squareup.okhttp3:okhttp:4.6.0")
     implementation("commons-codec:commons-codec:1.14")
-
 
     implementation("com.facebook.android:facebook-login:16.2.0")
 
