@@ -71,7 +71,8 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(fileTree(mapOf(
 //        "dir" to "C:\\Users\\WIN11PRO\\OneDrive\\Máy tính\\ZaloPaylib",
-        "dir" to "D:\\ZaloPaylib\\ZaloPaylib",
+//        "dir" to "D:\\ZaloPaylib\\ZaloPaylib",
+        "dir" to "E:\\Download\\ZaloPaylib",
         "include" to listOf("*.aar", "*.jar"),
         "exclude" to listOf("")
     )))

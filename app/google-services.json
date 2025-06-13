@@ -14,15 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "522952041609-vpns9qgegmj8spi47fadh1q4f1j8cm7n.apps.googleusercontent.com",
+          "client_id": "116982099645-dcgnce4gv50qh70kerql6osrkkkd3a5h.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.lab2",
-            "certificate_hash": "b3d746e2b42810919e7af0f7f6e2b802a4b41bce"
+            "certificate_hash": "abf20f81893f133a77f89390ace87ea75a712cca"
           }
         },
         {
-          "client_id": "522952041609-fce0bofgbk0oeparkispfjo8g4nohloo.apps.googleusercontent.com",
+          "client_id": "116982099645-im9pasgomhv5te458jf3irfj7emeqqe5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "522952041609-fce0bofgbk0oeparkispfjo8g4nohloo.apps.googleusercontent.com",
+              "client_id": "116982099645-im9pasgomhv5te458jf3irfj7emeqqe5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
