@@ -180,34 +180,49 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
                 switch (i) {
-                    case 2:
-                        Intent trangchu = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(trangchu);
-                        break;
-                    case 0:
+                    case 0: // Điện thoại (id=1)
                         Intent dienthoai = new Intent(getApplicationContext(), DienThoaiMainActivity.class);
                         dienthoai.putExtra("loai", 1);
                         startActivity(dienthoai);
                         break;
-                    case 1:
+                    case 1: // Laptop (id=2)
                         Intent laptop = new Intent(getApplicationContext(), DienThoaiMainActivity.class);
                         laptop.putExtra("loai", 2);
                         startActivity(laptop);
                         break;
-
-                    case 5:
-                        Intent history = new Intent(getApplicationContext(), XemDonActivity.class);
-                        startActivity(history);
+                    case 2: // Trang chủ (id=3)
+                        Intent trangchu = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(trangchu);
                         break;
-                    case 6: // Hồ Sơ của tôi
-                        startActivity(new Intent(getApplicationContext(), QuanLiActivity.class));
-                        finish();
+                    case 3: // Thông tin (id=4)
+                        Intent thongtin = new Intent(getApplicationContext(), ProfileActivity.class);
+                        startActivity(thongtin);
                         break;
-                    case 7: // Quản lí
+                    case 4: // Liên hệ (id=5)
+                        Intent lienhe = new Intent(getApplicationContext(), MessageActivity.class);
+                        startActivity(lienhe);
+                        break;
+                    case 5: // Lịch sử đơn hàng (id=6)
+                        Intent lichsu = new Intent(getApplicationContext(), XemDonActivity.class);
+                        startActivity(lichsu);
+                        break;
+                    case 6: // Hồ Sơ của tôi (id=7)
+                        Intent hoso = new Intent(getApplicationContext(), ProfileActivity.class);
+                        startActivity(hoso);
+                        break;
+                    case 7: // Quản lí (được thêm từ code)
+                        Intent quanli = new Intent(getApplicationContext(), QuanLiActivity.class);
+                        startActivity(quanli);
+                        break;
+                    case 8: // Đăng xuất (được thêm từ code)
                         Paper.book().delete("user");
                         FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(getApplicationContext(), DangNhapActivity.class));
+                        Intent dangxuat = new Intent(getApplicationContext(), DangNhapActivity.class);
+                        startActivity(dangxuat);
                         finish();
+                        break;
+                    default:
+                        Toast.makeText(getApplicationContext(), "Chức năng chưa được triển khai", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

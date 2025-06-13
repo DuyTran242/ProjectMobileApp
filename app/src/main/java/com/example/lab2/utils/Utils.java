@@ -8,11 +8,7 @@ import java.util.List;
 
 public class Utils {
 
-//    public static final String BASE_URL = "http://192.168.1.248/banhang/";
-    public static final String BASE_URL = "http://172.17.118.142/banhang/";
-//    public static final String BASE_URL = "http://192.168.1.7/banhang/";
-
-//    public static final String BASE_URL = "http://192.168.100.159/banhang/";
+    public static final String BASE_URL = "http://172.17.103.55/banhang/";
 
     public static List<GioHang> manggiohang;
     public static List<GioHang> mangmuahang = new ArrayList<>();
