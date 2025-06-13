@@ -37,7 +37,6 @@
     <string name="item_count_format">%s sản phẩm</string>
     <string name="amount_format">%s ₫</string>
     <string name="facebook_app_id">1046657007560804</string>
-    <string name="facebook_client_token">d371cb29dffe82be57bc411795bce9aa</string>
     <string name="fb_login_protocol_scheme">fb1046657007560804</string>
 
 

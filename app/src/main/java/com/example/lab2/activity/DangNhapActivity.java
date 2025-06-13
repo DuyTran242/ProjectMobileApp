@@ -1,9 +1,12 @@
 package com.example.lab2.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
+import android.util.Base64;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +50,13 @@ import com.facebook.login.LoginManager;
 
 import com.google.firebase.auth.FacebookAuthProvider;
 
+import java.security.MessageDigest;
 import java.util.List;
+
+import android.content.pm.Signature;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class DangNhapActivity extends AppCompatActivity {
 
@@ -67,12 +76,14 @@ public class DangNhapActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     AppCompatButton btnFacebookLogin;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-
-        FacebookSdk.sdkInitialize(getApplicationContext());
+        FacebookSdk.setClientToken(getString(R.string.facebook_client_token));
+//        FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(getApplication());
 
         setContentView(R.layout.activity_dang_nhap);
@@ -97,6 +108,30 @@ public class DangNhapActivity extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "com.example.lab2",  //
+                    PackageManager.GET_SIGNING_CERTIFICATES
+            );
+
+            Signature[] signatures;
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+                // API 28 trở lên
+                signatures = info.signingInfo.getApkContentsSigners();
+            } else {
+                // API 27 trở xuống
+                signatures = info.signatures;
+            }
+            for (Signature signature : signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                String keyHash = Base64.encodeToString(md.digest(), Base64.NO_WRAP);
+                Log.d("KeyHash", "KeyHash: " + keyHash);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initView() {
@@ -158,7 +193,6 @@ public class DangNhapActivity extends AppCompatActivity {
         });
 
         btnGoogleLogin.setOnClickListener(v -> {
-            // Đăng xuất để không tự động đăng nhập lại
             firebaseAuth.signOut();
             mGoogleSignInClient.signOut().addOnCompleteListener(task -> {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -167,6 +201,7 @@ public class DangNhapActivity extends AppCompatActivity {
         });
 
         btnFacebookLogin.setOnClickListener(v -> {
+            LoginManager.getInstance().logOut();
             LoginManager.getInstance().logInWithReadPermissions(
                     DangNhapActivity.this,
                     List.of("email", "public_profile")
