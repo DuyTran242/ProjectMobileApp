@@ -15,6 +15,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        resValue("string", "facebook_client_token", "d371cb29dffe82be57bc411795bce9aa")
     }
 
     packaging {
@@ -70,6 +71,13 @@ dependencies {
     implementation(libs.googleid)
     implementation(libs.firebase.messaging)
     implementation(fileTree(mapOf(
+//        "dir" to "C:\\Users\\WIN11PRO\\OneDrive\\Máy tính\\ZaloPaylib",
+//        "dir" to "D:\\ZaloPaylib\\ZaloPaylib",
+        "dir" to "E:\\Download\\ZaloPaylib",
+        "include" to listOf("*.aar", "*.jar"),
+        "exclude" to listOf("")
+    )))
+    implementation(fileTree(mapOf(
         "dir" to "C:\\Users\\WIN11PRO\\OneDrive\\Máy tính\\ZaloPaylib",
         "include" to listOf("*.aar", "*.jar"),
         "exclude" to listOf("")
@@ -99,7 +107,13 @@ dependencies {
     // Java Mail API
     implementation("com.sun.mail:android-mail:1.6.7")
     implementation("com.sun.mail:android-activation:1.6.7")
+
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
+
     implementation("com.squareup.okhttp3:okhttp:4.6.0")
     implementation("commons-codec:commons-codec:1.14")
+
+    implementation("com.facebook.android:facebook-login:16.2.0")
+
 
 }

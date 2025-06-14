@@ -47,7 +47,8 @@ public interface ApiBanHang {
     @FormUrlEncoded
     Observable<UserModel> dangNhap(
             @Field("email") String email,
-            @Field("pass") String pass
+            @Field("pass") String pass,           // Truyền chuỗi rỗng "" nếu là Google login
+            @Field("auth_type") String authType   // "normal" hoặc "google"
     );
     @POST("reset.php")
     @FormUrlEncoded

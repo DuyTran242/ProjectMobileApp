@@ -1,26 +1,44 @@
 {
   "project_info": {
-    "project_number": "415216330399",
-    "project_id": "appbanhang-25de9",
-    "storage_bucket": "appbanhang-25de9.firebasestorage.app"
+    "project_number": "116982099645",
+    "project_id": "apibanhang",
+    "storage_bucket": "apibanhang.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:415216330399:android:1fde22336a9d877769e4aa",
+        "mobilesdk_app_id": "1:116982099645:android:10867c93c472b564d091d4",
         "android_client_info": {
           "package_name": "com.example.lab2"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "116982099645-dcgnce4gv50qh70kerql6osrkkkd3a5h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lab2",
+            "certificate_hash": "abf20f81893f133a77f89390ace87ea75a712cca"
+          }
+        },
+        {
+          "client_id": "116982099645-im9pasgomhv5te458jf3irfj7emeqqe5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyBbNrAZ3BJ6q3iPHPx935sbV2o4hbGSYIg"
+          "current_key": "AIzaSyASkjpGgiFOaEiz_smKHjidjSPzUS4TJAM"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116982099645-im9pasgomhv5te458jf3irfj7emeqqe5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
