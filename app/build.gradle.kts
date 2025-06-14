@@ -82,6 +82,11 @@ dependencies {
         "include" to listOf("*.aar", "*.jar"),
         "exclude" to listOf("")
     )))
+    implementation(fileTree(mapOf(
+        "dir" to "D:\\ZaloPaylib",
+        "include" to listOf("*.aar", "*.jar"),
+        "exclude" to listOf("")
+    )))
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -114,6 +119,10 @@ dependencies {
     implementation("commons-codec:commons-codec:1.14")
 
     implementation("com.facebook.android:facebook-login:16.2.0")
+
+    // Google map API
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
+
 
 
 }
