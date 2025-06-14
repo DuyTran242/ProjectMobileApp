@@ -23,6 +23,12 @@ import com.example.lab2.Zalopay.Api.CreateOrder;
 import com.example.lab2.retrofit.ApiBanHang;
 import com.example.lab2.retrofit.RetrofitClient;
 import com.example.lab2.utils.Utils;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -37,7 +43,10 @@ import vn.zalopay.sdk.ZaloPayError;
 import vn.zalopay.sdk.ZaloPaySDK;
 import vn.zalopay.sdk.listeners.PayOrderListener;
 
-public class ThanhToanActivity extends AppCompatActivity {
+import android.widget.ImageView;
+import com.bumptech.glide.Glide;
+
+public class ThanhToanActivity extends AppCompatActivity implements OnMapReadyCallback {
     Toolbar toolbar;
     TextView txttongtien, txtsodt, txtemail;
     EditText edtdiachi;
@@ -46,6 +55,8 @@ public class ThanhToanActivity extends AppCompatActivity {
     ApiBanHang apiBanHang;
     long tongTien;
     int totalItem;
+    ImageView imgMap;
+
 
     AppCompatButton btnZaloPay, btnMomo;
 
@@ -74,6 +85,12 @@ public class ThanhToanActivity extends AppCompatActivity {
 
         // THÊM: Thiết lập event handlers cho các nút thanh toán
         setupPaymentButtons();
+        // Load bản đồ động
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mapFragment);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
     }
 
     private void countItem() {
@@ -92,9 +109,22 @@ public class ThanhToanActivity extends AppCompatActivity {
         edtdiachi = findViewById(R.id.edtdiachi);
         btndathang = findViewById(R.id.btndathang);
 
+
         // THÊM: Ánh xạ các nút thanh toán
         btnZaloPay = findViewById(R.id.btnZaloPay);
         btnMomo = findViewById(R.id.btnMomo);
+    }
+    // Google map
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        LatLng dhNongLam = new LatLng(10.871455506152442, 106.79170805140154);
+        googleMap.addMarker(new MarkerOptions()
+                .position(dhNongLam)
+                .title("Đại học Nông Lâm TP.HCM")
+                .snippet("Khu phố 6, Linh Trung, TP. Thủ Đức"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dhNongLam, 17f));
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.getUiSettings().setMapToolbarEnabled(true);
     }
 
     @Override
